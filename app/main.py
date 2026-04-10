@@ -28,3 +28,11 @@ def update_task(task_id: int, updated_task: Task):
             tasks[i] = updated_task
             return updated_task
     return {"error": "Task not found"}
+
+@app.delete("/tasks/{task_id}")
+def delete_task(task_id: int):
+    for i, task in enumerate(tasks):
+        if task.id == task_id:
+            tasks.pop(i)
+            return {"message": "Task deleted successfully"}
+    return {"error": "Task not found"}
